@@ -8,7 +8,8 @@
     "scheme": "vyxion",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.anonymous.Vyxion"
     },
     "android": {
       "adaptiveIcon": {

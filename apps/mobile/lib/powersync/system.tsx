@@ -19,9 +19,10 @@ export class System {
     });
   }
 
+  /** Opens the local SQLite store. Safe to call before sign-in — queries just return
+   * no rows until data syncs down. Does not start the sync connection. */
   async init() {
     await this.powersync.init();
-    await this.powersync.connect(this.supabaseConnector);
   }
 }
 
@@ -30,14 +31,32 @@ export const system = new System();
 const SystemContext = createContext(system);
 export const useSystem = () => useContext(SystemContext);
 
-/** Initializes PowerSync once and exposes it via both our own context (for
- * `system.supabaseConnector`) and `@powersync/react`'s PowerSyncContext (for `useQuery`). */
+/**
+ * Initializes the local PowerSync store once, and starts/stops the sync connection in
+ * lockstep with Supabase auth state. Connecting before a session exists would just make
+ * PowerSync fail `fetchCredentials` and log a (harmless but noisy) sync error on every
+ * retry, so we wait for a real session instead.
+ */
 export function SystemProvider({ children }: { children: React.ReactNode }) {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
     system.init().then(() => setReady(true));
   }, []);
+
+  useEffect(() => {
+    if (!ready) return;
+
+    const { data: subscription } = system.supabaseConnector.client.auth.onAuthStateChange((_event, session) => {
+      if (session) {
+        system.powersync.connect(system.supabaseConnector);
+      } else {
+        system.powersync.disconnect();
+      }
+    });
+
+    return () => subscription.subscription.unsubscribe();
+  }, [ready]);
 
   if (!ready) return null;
 

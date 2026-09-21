@@ -4,7 +4,10 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
 
+import AuthScreen from '@/components/AuthScreen';
 import { useColorScheme } from '@/components/useColorScheme';
+import { SystemProvider } from '@/lib/powersync/system';
+import { useAuthState } from '@/lib/supabase/useAuthState';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -39,18 +42,27 @@ export default function RootLayout() {
     return null;
   }
 
-  return <RootLayoutNav />;
+  return (
+    <SystemProvider>
+      <RootLayoutNav />
+    </SystemProvider>
+  );
 }
 
 function RootLayoutNav() {
   const colorScheme = useColorScheme();
+  const auth = useAuthState();
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-      </Stack>
+      {auth.loading ? null : auth.session ? (
+        <Stack>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+        </Stack>
+      ) : (
+        <AuthScreen />
+      )}
     </ThemeProvider>
   );
 }

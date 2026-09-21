@@ -1,8 +1,8 @@
-# Vysion — Multiphase Implementation Plan
+# Vyxion — Multiphase Implementation Plan
 
 ## Context
 
-Vysion is an AI-native EFB for GA pilots (README.md, SPEC.md). The repo today is a bare Expo SDK 57 / expo-router tabs template (`app/`, `components/`, `constants/`) with zero domain code. SPEC §11 gives a build order; this plan turns it into phases with requirements, tasks, and exit criteria, adds the foundation phase the spec assumes but doesn't list, and re-sequences the two places where §11's order has a dependency inversion (NASR airport/navaid data is needed by the nav log in step 3, not step 8; terrain is needed by altitude optimization in step 4).
+Vyxion is an AI-native EFB for GA pilots (README.md, SPEC.md). The repo today is a bare Expo SDK 57 / expo-router tabs template (`app/`, `components/`, `constants/`) with zero domain code. SPEC §11 gives a build order; this plan turns it into phases with requirements, tasks, and exit criteria, adds the foundation phase the spec assumes but doesn't list, and re-sequences the two places where §11's order has a dependency inversion (NASR airport/navaid data is needed by the nav log in step 3, not step 8; terrain is needed by altitude optimization in step 4).
 
 Decisions made (with user, 2026-09-20):
 - **Backend:** Supabase (Postgres + PostGIS, Auth, Storage) + a separate containerized **TypeScript worker/API service** for heavy compute (GRIB2 decode via `wgrib2`, NASR/chart ingest, optimizer, ADS-B).

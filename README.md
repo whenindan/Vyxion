@@ -1,10 +1,10 @@
-# Vysion — Project Context
+# Vyxion — Project Context
 
 ## What this is
-Vysion is an AI-native Electronic Flight Bag (EFB) for general aviation pilots.
+Vyxion is an AI-native Electronic Flight Bag (EFB) for general aviation pilots.
 ForeFlight and Garmin Pilot are manual route builders with AI features bolted
 on; competitors like PilotGPT generate routes by stitching together
-intermediate airports, which is not optimization. Vysion:
+intermediate airports, which is not optimization. Vyxion:
 
 - Generates a fully optimized VFR flight plan (route, cruise altitude,
   departure timing, fuel) from a Pilot Profile + Aircraft Profile + two
@@ -16,7 +16,7 @@ intermediate airports, which is not optimization. Vysion:
   *before* a plan is generated.
 
 ## The product principle: single source
-A pilot should never have to leave Vysion to find information. Not to a
+A pilot should never have to leave Vyxion to find information. Not to a
 weather site, not to a chart app, not to a PDF of the POH, not to a separate
 logbook, not to a fuel-price lookup, not to a regulations search. Every piece
 of information required to plan, brief, file, fly, and log a flight lives in
@@ -33,11 +33,11 @@ Two consequences that constrain every design decision:
    do, the single-source promise is broken.
 
 ### Where the principle stops
-Vysion is the sole *information* source. It is not, and must never present
+Vyxion is the sole *information* source. It is not, and must never present
 itself as, the decision-maker. Under 14 CFR 91.3 the pilot in command holds
 final authority for the operation of the aircraft, and under 91.103 the PIC —
 not a tool — is responsible for becoming familiar with all available
-information before a flight. Vysion's job is to make "all available
+information before a flight. Vyxion's job is to make "all available
 information" actually available in one place, and to make the pilot's decision
 better-informed. It does not make the decision.
 

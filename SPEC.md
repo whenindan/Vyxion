@@ -1,4 +1,4 @@
-# Vysion — Technical Spec
+# Vyxion — Technical Spec
 
 Two things in scope here: the **complete data coverage** required to be a
 pilot's single source (§1–2, §10), and the **VFR flight plan optimizer**
@@ -12,7 +12,7 @@ scaffold all of it in one pass.
 
 ## 1. The single-source requirement
 
-A pilot must never leave Vysion for information. That converts a vague product
+A pilot must never leave Vyxion for information. That converts a vague product
 goal into a concrete, checkable data-coverage requirement: every dataset below
 is in scope, and every one of them is a reason a pilot would otherwise open
 another app.
@@ -53,7 +53,7 @@ gate the single-source claim:
   from an FAA-contracted flight service provider (Leidos), because that record
   is what exists if anything is ever questioned. Displaying the same underlying
   weather data is *not* the same as obtaining a logged briefing. To be the sole
-  source, Vysion needs integration with flight service for briefing retrieval
+  source, Vyxion needs integration with flight service for briefing retrieval
   and logging — which is how existing EFBs do it.
 - **Flight plan filing.** Filing, activating, and closing VFR and IFR plans
   requires connection into the NAS via flight service. Same partner path.
@@ -100,9 +100,9 @@ failure mode with real consequences.
 
 ## 2. Where the single-source principle stops
 
-Vysion is the sole information source. It is not the decision-maker. Under
+Vyxion is the sole information source. It is not the decision-maker. Under
 91.3 the PIC holds final authority; under 91.103 the PIC is responsible for
-familiarity with all available information. Vysion's role is to make all of
+familiarity with all available information. Vyxion's role is to make all of
 that information genuinely available in one place and to make the resulting
 decision better-informed.
 
@@ -118,7 +118,7 @@ it replaces pilot judgment is one bad outcome from being indefensible.
 ### 3.1 Sources
 Wind/temp aloft comes from NOAA gridded model output, **not** the legacy FB/FD
 winds-aloft text products — those are sparse station point forecasts at coarse
-altitude steps, which is exactly the legacy-data problem Vysion exists to solve.
+altitude steps, which is exactly the legacy-data problem Vyxion exists to solve.
 
 - **HRRR** — 3 km CONUS, hourly, ~18 h horizon. Best for near-term GA flights.
 - **RAP** — 13 km, ~21 h horizon. Fallback / wider coverage.
